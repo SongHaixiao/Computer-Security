@@ -56,18 +56,19 @@
      >
      >- Define $(a\mod n) = r_a $ and $(b\mod n) = r_b$. 
      >
-     >  Then we can write $a = r_a + jn \quad for\quad some\quad integer\quad j$ and $b=r_b+kn\quad for\quad some\quad integer\quad k$
+     > Then we can write $a = r_a + jn \quad for\quad some\quad integer\quad j$ and $b=r_b+kn\quad for\quad some\quad integer\quad k$
      >
      >- Then:
-     > $$
-     >  \begin{align}
-     >  (a+b)\mod n &= (r_a+jn+r_b+kn)\mod n \\ &= (r_a + r_b+(k+j)n)\mod n\\&=(r_a+r_b)\mod n \\&= [(a\mod n) + (b \mod n)]\mod n
-     >  \end{align}
-     > $$
-     > 
-
-  2. **$[(a \mod n)-(b \mod n)]\mod n = (a-b)\mod n$**
-
+     >
+     >$$
+     > \begin{align}
+     > (a+b)\mod n &= (r_a+jn+r_b+kn)\mod n \\ &= (r_a + r_b+(k+j)n)\mod n\\&=(r_a+r_b)\mod n \\&= [(a\mod n) + (b \mod n)]\mod n
+     > \end{align}
+     >$$
+   >
+  
+2. **$[(a \mod n)-(b \mod n)]\mod n = (a-b)\mod n$**
+  
   3. **$[(a\mod n)*(b\mod n)]\mod n = (a*b)\mod n$**
   
   - Examples of the three properties:
@@ -136,7 +137,7 @@ Example with 𝑎 = 1759, 𝑏 = 550 -> Result: d = 1; x = –111; y = 355
 
 - States the following:
 
-  If p is prime and a is a positive integer not divisible by p then
+  if p is prime and a is a positive integer not divisible by p then
 
 $$
 a^{p-1}\equiv1(\mod p)
@@ -144,10 +145,12 @@ $$
 
 - An alternate form is:
 
-  If p is prime and a is a positive integer then
+  if p is prime and a is a positive integer then
   $$
   a^p\equiv a(\mod p)
   $$
+
+
 
 ### Euler Totient Function $\phi(n)$
 
@@ -174,6 +177,8 @@ $$
      >$\phi(15) = (3 - 1) * (5-1)=8$
      >
      >$\phi(21) = (3 - 1) * (7-1)=12$
+     
+     
 
 ### Euler's Theorem
 
@@ -190,3 +195,81 @@ $$
 
 
 
+### Primality Test
+
+#### Trial Division
+
+#### Fermat Test
+
+- if p is prime and $GCD(a,p)=1$,then $a^{p-1} \equiv 1 (\ mod \ p)$.
+- if $a^{p-1} \not \equiv 1 (\ mode \ p)$ for some a s.t. $GCD(a,p) = 1$,then p is not prime.
+
+#### Miller-Rabin Test
+
+- Fermat Test
+
+- NSR (Nontrivial Square Root) Test
+
+  - Theorem : if p is an odd prime, then $x^2 \ mode \ p = 1$ has only two solutions, $x = 1, p -1$.
+
+  - NSR of $1 \ mode \ n \ : \ x^2 \ mode \ n = 1,\ but \ x \neq 1,\ n - 1$
+
+    example : $x=4,n=15$.
+
+#### **Miller-Rabin Algorithm**
+
+- Typically used to test a large number for primality
+
+- Algorithms is :
+
+  >TEST(n):
+  >
+  >	1. Find integers k,q with k > 0, q is odd, so that $(n-1)=2^kq$;
+  > 	2. Select a random integer a, 1 < a < n - 1;
+  > 	3. If $a^q \ mode \ n = 1 $ then return ("inconclusive");
+  > 	4. for j = 0 to k - 1 do
+  > 	5. if $(a^{2/q} \ mode \ n = n-1)$ then return ("inconclusive");
+  > 	6. return("composite").
+
+- Another Version :
+
+  <img src="Resources/32.jpg" style="zoom:50%;" />
+
+  - Example for sucessful Fermat Test : n = 81, a = 4
+  - Example for sucessful NSR Test : n = 15, a = 4
+
+#### Deterministic Primality Algorithm
+
+- Prior to 2002 there was no known method fo efficiently proving the primality of very large numebrs.
+
+- All of the algorithms in use produced a probabilistic result.
+
+- In 2002 Agrawal, Kayal, and Saxena developed an algorithm that efficiently determines whether a given large number is prime
+
+  - Known as the AKS algorithm
+  - Does not appear to be as efficient as the Miller-Rabin algorithm
+
+  
+
+#### Hybrid
+
+- Example : trial division + MR/Fermat
+
+
+
+### Discrete Logarithms
+
+- Powers of an integer, modulo n
+
+<img src="Resources/33.jpg" style="zoom:50%;" />
+
+- Logarithms for modular arithmetic
+- Calculation of discrete logarithms
+
+
+
+<img src="Resources/34.jpg" style="zoom:50%;" />
+
+- Integer Factorization
+
+<img src="Resources/35.jpg" style="zoom:50%;" />
